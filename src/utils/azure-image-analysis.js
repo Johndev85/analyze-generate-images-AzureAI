@@ -1,7 +1,5 @@
 export const isConfigured = () => {
-  return (
-    !!import.meta.env.VITE_VISION_ENDPOINT || !!import.meta.env.VITE_VISION_KEY
-  )
+  return !!process.env.VISION_ENDPOINT && !!process.env.VISION_KEY
 }
 
 const analyzeImage = async (image) => {

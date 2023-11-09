@@ -1,5 +1,5 @@
 export const isConfigured = () => {
-  return !!import.meta.env.VITE_OPENAI_KEY
+  return !!process.env.OPENAI_KEY
 }
 
 const generateImage = async (text) => {
