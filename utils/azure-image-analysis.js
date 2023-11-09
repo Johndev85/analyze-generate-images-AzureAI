@@ -1,16 +1,21 @@
 const analyzeImage = async (image) => {
   const params = ["objects", "caption", "tags", "denseCaptions", "read"]
+  const isProduction = process.env.NODE_ENV === "production"
+  const visionEndpoint = isProduction
+    ? process.env.VITE_VISION_ENDPOINT
+    : import.meta.env.VITE_VISION_ENDPOINT
+  const visionKey = isProduction
+    ? process.env.VITE_VISION_KEY
+    : import.meta.env.VITE_VISION_KEY
 
   try {
     const response = await fetch(
-      `${
-        import.meta.env.VITE_VISION_ENDPOINT
-      }/computervision/imageanalysis:analyze?api-version=2023-04-01-preview&features=${params}&language=en`,
+      `${visionEndpoint}/computervision/imageanalysis:analyze?api-version=2023-04-01-preview&features=${params}&language=en`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Ocp-Apim-Subscription-Key": `${import.meta.env.VITE_VISION_KEY}`,
+          "Ocp-Apim-Subscription-Key": `${visionKey}`,
         },
         body: JSON.stringify({
           url: image,
