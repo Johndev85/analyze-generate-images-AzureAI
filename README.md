@@ -1,5 +1,63 @@
-# React + Vite
+# Challenge project - Image analysis and generation capabilities with Azure AI
 
-[Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps/overview) allows you to easily build [React](https://reactjs.org/) apps in minutes. Use this repo with the [React quickstart](https://docs.microsoft.com/azure/static-web-apps/getting-started?tabs=react) to build and customize a new static site.
+![Alt text](./src/assets/azure-ai.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project demonstrates the ability to develop an intelligent web application that integrates Computer Vision functionalities, leveraging Azure AI Vision and OpenAI image services.
+
+Check out the site here: [https://lively-field-0447c1a0f.4.azurestaticapps.net/](https://lively-field-0447c1a0f.4.azurestaticapps.net/)
+
+---
+
+## Features
+
+In this project, it demonstrates the ability to:
+
+- Integrate into the application the most recent functionalities of Image Analysis 4.0 based on the technology of Microsoft Florence's large-scale basic model.
+- Enrich the solution with generative artificial intelligence functionalities.
+- Create a CI/CD pipeline with GitHub actions to implement the application in the cloud as an Azure static web application.
+
+---
+
+## Build Setup
+
+```bash
+# clone repository
+git clone https://github.com/Johndev85/analyze-and-generate-images-with-Azure-AI.git
+
+# go project file
+ cd analyze-and-generate-images-with-Azure-AI
+
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:5173/
+npm run dev
+
+# build for production with minification
+npm run build
+
+```
+
+---
+
+## Technologies
+
+- React
+- vitejs
+- Computer Vision - Microsoft Azure IA
+- OpenIA Image
+- Static web Apps - Microsoft Azure
+
+---
+
+## Contribute
+
+If you want to contribute with this project, just make a Pull Request explaining the improving ✨.
+
+---
+
+## License
+
+The MIT License (MIT)
+
+---

@@ -1,3 +1,9 @@
+export const isConfigured = () => {
+  return (
+    !!import.meta.env.VITE_VISION_ENDPOINT || !!import.meta.env.VITE_VISION_KEY
+  )
+}
+
 const analyzeImage = async (image) => {
   const params = ["objects", "caption", "tags", "denseCaptions", "read"]
   const isProduction = process.env.NODE_ENV === "production"
@@ -23,7 +29,8 @@ const analyzeImage = async (image) => {
       }
     )
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+      const data = await response.json()
+      throw new Error(`HTTP Error ${response.status}: ${data.error.message}`)
     }
     const responseJson = await response.json()
     return responseJson
