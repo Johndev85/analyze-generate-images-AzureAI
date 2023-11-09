@@ -4,14 +4,14 @@ export const isConfigured = () => {
 
 const generateImage = async (text) => {
   const isProduction = process.env.NODE_ENV === "production"
-  const openIaKey = isProduction
+  const openIAKey = isProduction
     ? process.env.OPENAI_KEY
     : import.meta.env.VITE_OPENAI_KEY
   const response = await fetch("https://api.openai.com/v1/images/generations", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${openIaKey}`,
+      Authorization: `Bearer ${openIAKey}`,
     },
     body: JSON.stringify({
       model: "dall-e-2",
