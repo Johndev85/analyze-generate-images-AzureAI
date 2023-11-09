@@ -1,6 +1,6 @@
 const analyzeImage = async (image) => {
   const params = ["objects", "caption", "tags", "denseCaptions", "read"]
-  const isProduction = process.env.NODE_ENV === "Production"
+  const isProduction = process.env.NODE_ENV === "production"
   const visionEndpoint = isProduction
     ? process.env.VISION_ENDPOINT
     : import.meta.env.VITE_VISION_ENDPOINT
