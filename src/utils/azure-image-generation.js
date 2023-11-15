@@ -3,7 +3,7 @@ export const isConfigured = () => {
 }
 
 const generateImage = async (text) => {
-  const isProduction = process.env.NODE_ENV === "production"
+  const isProduction = import.meta.env.PROD
   const openIAKey = isProduction
     ? process.env.OPENAI_KEY
     : import.meta.env.VITE_OPENAI_KEY
