@@ -44,9 +44,8 @@ npm run build
 
 - React
 - vitejs
-- Computer Vision - Microsoft Azure IA
-- OpenIA Image
-- Static web Apps - Microsoft Azure
+- Computer Vision - Microsoft Azure IA (require Azure account)
+- Static web Apps - Microsoft Azure (require Azure account)
 
 ---
 
