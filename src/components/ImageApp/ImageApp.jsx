@@ -3,6 +3,7 @@ import styles from "./imageApp.module.css"
 import React, { useState, useRef } from "react"
 import analyzeImage from "../../utils/azure-image-analysis.js"
 import generateImage from "../../utils/azure-image-generation.js"
+import Loader from "../Loader/Loader.jsx"
 
 function ImageApp() {
   const [imageUrl, setImageUrl] = useState("")
@@ -139,24 +140,26 @@ function ImageApp() {
           type="text"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
-          placeholder="Ingrese una URL o promt text"
+          placeholder="Enter an URL or promt text"
         />
         <span>or</span>
         <div>
+          <span>Upload an image:</span>
           <input
             type="file"
             ref={fileInputRef}
             accept="image/*"
             onChange={handleImageUpload}
+            className={styles.fileInput}
           />
         </div>
         <div className={styles.buttons}>
-          <button onClick={handleImageAnalysis}>Analizar Imagen</button>
-          <button onClick={handleImageGeneration}>Generar Imagen</button>
+          <button onClick={handleImageAnalysis}>Analyze Image</button>
+          {/* <button onClick={handleImageGeneration}>Generar Imagen</button> */}
         </div>
       </form>
       {error && <div className={styles.errorMessage}>{error}</div>}
-      {isLoading ? <div>Cargando...</div> : <DisplayResults />}
+      {isLoading ? <Loader /> : <DisplayResults />}
     </section>
   )
 }

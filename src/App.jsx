@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import reactLogo from "./assets/react.svg"
+import computerVisionLogo from "./assets/computer-vision-icon.jpeg"
 import "./App.css"
 
 import { isConfigured as isImageGenerationConfigured } from "./utils/azure-image-generation"
@@ -11,7 +11,7 @@ function App() {
     isImageGenerationConfigured() && isImageAnalysisConfigured()
 
   return (
-    <>
+    <main>
       {!isConfigured && (
         <div>
           La aplicación no está configurada correctamente. Por favor, verifica
@@ -21,12 +21,16 @@ function App() {
       {isConfigured && (
         <>
           <div>
-            <img src={reactLogo} className="logo react" alt="React logo" />
+            <img
+              src={computerVisionLogo}
+              className="logo react"
+              alt="React logo"
+            />
           </div>
           <ImageApp />
         </>
       )}
-    </>
+    </main>
   )
 }
 

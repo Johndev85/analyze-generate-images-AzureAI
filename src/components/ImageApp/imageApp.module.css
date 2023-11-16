@@ -17,9 +17,16 @@
     align-items: center;
     gap: 20px;
     & input {
-      padding: 3px;
-      width: 70%;
+      padding: 10px;
+      width: 500px;
       height: 30px;
+    }
+    & span {
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+    & .fileInput {
+      width: auto;
     }
     & .buttons {
       width: 70%;
