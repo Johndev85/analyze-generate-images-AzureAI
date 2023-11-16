@@ -1,8 +1,8 @@
-export const isConfigured = () => {
-  return (
-    !!import.meta.env.VITE_VISION_ENDPOINT && !!import.meta.env.VITE_VISION_KEY
-  )
-}
+// export const isConfigured = () => {
+//   return (
+//     !!import.meta.env.VITE_VISION_ENDPOINT && !!import.meta.env.VITE_VISION_KEY
+//   )
+// }
 
 const analyzeImage = async (dataImage) => {
   const params = ["objects", "caption", "tags", "denseCaptions", "read"]

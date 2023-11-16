@@ -1,6 +1,6 @@
-export const isConfigured = () => {
-  return !!import.meta.env.VITE_OPENAI_KEY
-}
+// export const isConfigured = () => {
+//   return !!import.meta.env.VITE_OPENAI_KEY
+// }
 
 const generateImage = async (text) => {
   const isProduction = import.meta.env.PROD
