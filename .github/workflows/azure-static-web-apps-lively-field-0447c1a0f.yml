@@ -13,6 +13,7 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
+    environment: production
     name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v3
@@ -31,9 +32,9 @@ jobs:
           app_location: "/" # App source code path
           api_location: "api" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
-            env:
-              APPLICATION_ID: ${{ secrets.SUBSCRIPTION_ID }}
-              CLOUD_IDENTIFIER: gcp-eu
+          env:
+            APPLICATION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+            CLOUD_IDENTIFIER: gcp-eu
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
