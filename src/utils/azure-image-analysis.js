@@ -8,7 +8,7 @@ const analyzeImage = async (dataImage) => {
   const params = ["objects", "caption", "tags", "denseCaptions", "read"]
 
   const visionEndpoint = import.meta.env.VITE_VISION_ENDPOINT
-  const visionKey = import.meta.env.VISION_KEY
+  const visionKey = import.meta.env.VITE_VISION_KEY
 
   try {
     const response = await fetch(
