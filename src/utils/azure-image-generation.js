@@ -3,7 +3,10 @@
 // }
 
 const generateImage = async (text) => {
-  const openIAKey = import.meta.env.OPENAI_KEY
+  const isProduction = process.env.NODE_ENV === "production"
+  const openIAKey = isProduction
+    ? process.env.OPENAI_KEY
+    : import.meta.env.VITE_OPENAI_KEY
   const response = await fetch("https://api.openai.com/v1/images/generations", {
     method: "POST",
     headers: {

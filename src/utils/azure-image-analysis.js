@@ -7,8 +7,13 @@
 const analyzeImage = async (dataImage) => {
   const params = ["objects", "caption", "tags", "denseCaptions", "read"]
 
-  const visionEndpoint = import.meta.env.VITE_VISION_ENDPOINT
-  const visionKey = import.meta.env.VITE_VISION_KEY
+  const isProduction = process.env.NODE_ENV === "production"
+  const visionEndpoint = isProduction
+    ? process.env.VISION_ENDPOINT
+    : import.meta.env.VITE_VISION_ENDPOINT
+  const visionKey = isProduction
+    ? process.env.VISION_KEY
+    : import.meta.env.VITE_VISION_KEY
 
   try {
     const response = await fetch(
