@@ -26,14 +26,15 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_LIVELY_FIELD_0447C1A0F }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
-          vision_key: ${{ secrets.VISION_KEY }}
-          vision_endpoint: ${{ secrets.VISION_ENDPOINT }}
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
           api_location: "api" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
+          env: # Add environment variables here
+            vision_key: ${{ secrets.VISION_KEY }}
+            vision_endpoint: ${{ secrets.VISION_ENDPOINT }}
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
