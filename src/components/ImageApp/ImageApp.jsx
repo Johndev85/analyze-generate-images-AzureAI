@@ -140,7 +140,7 @@ function ImageApp() {
           type="text"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
-          placeholder="Enter an URL or promt text"
+          placeholder="Enter an image URL"
         />
         <span>or</span>
         <div>
