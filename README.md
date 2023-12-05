@@ -4,7 +4,7 @@
 
 This project demonstrates the ability to develop an intelligent web application that integrates Computer Vision functionalities, leveraging Azure AI Vision and OpenAI image services.
 
-Check out the site here: [https://lively-field-0447c1a0f.4.azurestaticapps.net/](https://lively-field-0447c1a0f.4.azurestaticapps.net/)
+Check out the site here: [https://analyze-generate-images-azure-ai.vercel.app](https://analyze-generate-images-azure-ai.vercel.app)
 
 ---
 
