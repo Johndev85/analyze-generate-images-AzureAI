@@ -1,6 +1,6 @@
 import styles from "./imageApp.module.css"
 
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import analyzeImage from "../../utils/azure-image-analysis.js"
 import generateImage from "../../utils/azure-image-generation.js"
 import Loader from "../Loader/Loader.jsx"
@@ -15,6 +15,14 @@ function ImageApp() {
   const [imageUrlPreview, setImageUrlPreview] = useState("")
   const [imageFilePreview, setImageFilePreview] = useState("")
   const fileInputRef = useRef()
+  const [exampleUrl, setExampleUrl] = useState(
+    "https://images.pexels.com/photos/19709928/pexels-photo-19709928/free-photo-of-ciudad-fiesta-fuegos-artificiales-ano-nuevo.jpeg"
+  )
+  const [exampleImage, setExampleImage] = useState({
+    image: exampleUrl,
+    type: "url",
+  })
+  const [activeExample, setActiveExample] = useState(false)
 
   const handleImageUpload = (e) => {
     e.preventDefault()
@@ -24,13 +32,13 @@ function ImageApp() {
     if (validImageTypes.includes(fileType)) {
       setImageFile(file)
       sessionStorage.setItem("imageFile", URL.createObjectURL(file))
-      setImageFilePreview(sessionStorage.getItem("imageFile"))
     } else {
       setError("Invalid file type. Please upload an image file.")
     }
   }
 
   const handleImageAnalysis = async (e) => {
+    let imageToAnalyze
     e.preventDefault()
     if (imageUrl === "" && imageFile === null) {
       setError("Debe ingresar una URL o subir una imagen")
@@ -38,7 +46,6 @@ function ImageApp() {
     }
 
     try {
-      let imageToAnalyze
       if (imageUrl !== "") {
         setError(null)
         setIsLoading(true)
@@ -52,11 +59,13 @@ function ImageApp() {
         setError(null)
         setIsLoading(true)
         imageToAnalyze = { image: imageFile, type: "file" }
+        setImageFilePreview(sessionStorage.getItem("imageFile"))
         setImageUrlPreview(null)
       }
 
       const data = await analyzeImage(imageToAnalyze)
       setAnalysisData(data)
+      setActiveExample(false)
       setError(null)
       setImageFile(null)
       setImageUrl("")
@@ -91,12 +100,43 @@ function ImageApp() {
     setIsLoading(false)
   }
 
+  //image example preview
+  useEffect(() => {
+    setIsLoading(true)
+    setActiveExample(true)
+    const exampleImageAnalysis = async () => {
+      try {
+        sessionStorage.setItem("imageExample", exampleUrl)
+        if (sessionStorage.getItem("exampleData")) {
+          setAnalysisData(JSON.parse(sessionStorage.getItem("exampleData")))
+        } else {
+          const previewData = await analyzeImage(exampleImage)
+          sessionStorage.setItem("exampleData", JSON.stringify(previewData))
+          setAnalysisData(previewData)
+        }
+        setImageUrlPreview(sessionStorage.getItem("imageExample"))
+        setError(null)
+        setImageFile(null)
+        setImageUrl("")
+      } catch (error) {
+        console.error("Error", error)
+        setError(error.message)
+        setAnalysisData(null)
+        setImageFile(null)
+        setImageUrl("")
+      }
+      setIsLoading(false)
+    }
+    exampleImageAnalysis()
+  }, [exampleImage])
+
   const DisplayResults = () => {
     return (
       <>
         {analysisData && (
           <section className={styles.results}>
-            <h2>Results:</h2>
+            {activeExample ? <h2>Example demo:</h2> : <h2>Results:</h2>}
+
             {imageUrlPreview && (
               <img src={imageUrlPreview} alt="Analyzed image" />
             )}
